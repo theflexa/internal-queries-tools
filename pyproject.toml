@@ -1,2 +1,6 @@
+#########
+#DEFASADO
+#########
+
 [tool.setuptools_scm]
 write_to = "src/_version.py"  # Arquivo gerado automaticamente

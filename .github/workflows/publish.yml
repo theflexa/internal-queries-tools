@@ -23,11 +23,16 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install setuptools setuptools-scm pyinstaller -r requirements.txt
+          pip install pyinstaller -r requirements.txt
+
+      - name: Clean previous builds
+        run: |
+          Remove-Item -Recurse -Force build -ErrorAction SilentlyContinue
+          Remove-Item -Recurse -Force dist -ErrorAction SilentlyContinue
 
       - name: Generate Executable
         run: |
-          pyinstaller --onefile --name=DeepSeek-Tool-${{ github.ref_name }} main.py
+          pyinstaller --onefile --name=DeepSeek-Tool-${{ github.ref_name }} --clean main.py
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
