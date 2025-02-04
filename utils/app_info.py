@@ -1,4 +1,3 @@
-# app_info.py
 from datetime import datetime
 
 class AppInfo:
