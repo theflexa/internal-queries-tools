@@ -30,7 +30,7 @@ jobs:
           pyinstaller --onefile --name=SNC-Query-Tool-${{ github.ref_name }} main.py
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: SNC-Query-Tool-${{ github.ref_name }}
           path: dist/
