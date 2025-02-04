@@ -24,12 +24,12 @@ def check_git_status() -> None:
         exit(1)
 
 
-def get_version_from_git() -> str:
-    """Obtém a versão mais recente a partir das tags do Git (ex: v1.0.1)."""
+def get_latest_tag() -> str:
+    """Obtém a última tag do Git (ex: v1.0.1)."""
     try:
         result = subprocess.run("git describe --tags --abbrev=0", shell=True, capture_output=True, text=True)
         if result.returncode == 0:
-            return result.stdout.strip()  # Retorna a tag mais recente
+            return result.stdout.strip()  # Retorna a última tag
         else:
             print("⚠️ Não foi possível obter a versão do Git.")
             return "v0.0.0"  # Valor padrão se não houver tag
@@ -37,8 +37,35 @@ def get_version_from_git() -> str:
         return "v0.0.0"
 
 
+def increment_version(version: str) -> str:
+    """Incrementa a versão seguindo o padrão 'vX.Y.Z'."""
+    # Remove o prefixo "v" e divide em partes
+    version_parts = version.lstrip("v").split(".")
+
+    # Se a versão não estiver no formato esperado, retorna uma versão padrão
+    if len(version_parts) != 3:
+        return "v0.0.1"
+
+    major, minor, patch = map(int, version_parts)
+
+    # Incrementa o número de patch (pode ser ajustado para major ou minor conforme necessário)
+    patch += 1
+
+    # Retorna a nova versão formatada
+    return f"v{major}.{minor}.{patch}"
+
+
+def tag_exists(version: str) -> bool:
+    """Verifica se a tag já existe no repositório."""
+    result = subprocess.run(f"git tag -l {version}", shell=True, capture_output=True, text=True)
+    return version in result.stdout.strip()
+
+
 def create_tag(version: str):
-    """Cria uma nova tag no Git com base na versão extraída."""
+    """Cria uma nova tag no Git com base na versão extraída, se a tag não existir."""
+    if tag_exists(version):
+        print(f"⚠️ A tag '{version}' já existe. Não será criada novamente.")
+        return
     print(f"\n📑 Criando a tag '{version}'...")
     if not run_command(f"git tag {version}"):
         print("❌ Falha ao criar a tag.")
@@ -49,29 +76,17 @@ def create_tag(version: str):
     print(f"\n✅ Tag '{version}' criada e enviada com sucesso!")
 
 
-def create_release(version: str):
-    """Cria uma release no GitHub associada à tag."""
-    print(f"\n📦 Criando a release para a tag '{version}'...")
-    # Você pode usar a API do GitHub para criar a release automaticamente.
-    # Exemplo simples de como poderia ser feito via `curl` (ou você pode usar o GitHub CLI)
-    release_message = input("Mensagem da release: ")
-    command = f"gh release create {version} --title '{version}' --notes '{release_message}'"
-    if not run_command(command):
-        print("❌ Falha ao criar a release no GitHub.")
-        exit(1)
-    print(f"\n✅ Release '{version}' criada com sucesso no GitHub!")
-
-
 def main():
     check_git_status()
 
     # Incrementa versão antes do commit
-    #print("\n🔄 Atualizando versão...")
-    #update_version_main()
+    # print("\n🔄 Atualizando versão...")
+    # update_version_main()
 
     # Solicita branch e commit message
     branch_name = input("Informe a branch (pressione Enter para 'main'): ") or "main"
-    commit_message = input("Descrição do commit (ou pressione Enter para 'Atualiza versão'): ").strip() or "Atualiza versão automaticamente"
+    commit_message = input(
+        "Descrição do commit (ou pressione Enter para 'Atualiza versão'): ").strip() or "Atualiza versão automaticamente"
 
     print("\n🚀 Automatizando Git...\n")
 
@@ -89,20 +104,20 @@ def main():
 
     print("\n✅ Commit enviado com sucesso!")
 
-    # Obtém a versão do commit
-    version = get_version_from_git()
+    # Obtém a última versão (tag)
+    latest_version = get_latest_tag()
 
-    # Pergunta se o usuário deseja criar a tag ou release
-    action_choice = input(f"\nDeseja criar a tag ou release com a versão '{version}'? (tag/release): ").strip().lower()
-    if action_choice == "tag":
-        # Cria uma tag com a versão do commit
-        create_tag(version)
-    elif action_choice == "release":
-        # Cria uma tag e uma release associada
-        create_tag(version)
-        create_release(version)
+    # Incrementa a versão
+    new_version = increment_version(latest_version)
+    print(f"\n🔄 A nova versão será: {new_version}")
+
+    # Pergunta se o usuário deseja criar a tag
+    create_tag_choice = input(f"\nDeseja criar a tag com a versão '{new_version}'? (s/n): ").strip().lower()
+    if create_tag_choice == "s":
+        # Cria uma tag com a versão incrementada
+        create_tag(new_version)
     else:
-        print("\n⚠️ Nenhuma tag ou release criada.")
+        print("\n⚠️ Nenhuma tag criada.")
 
 
 if __name__ == "__main__":
