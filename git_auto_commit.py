@@ -127,3 +127,4 @@ if __name__ == "__main__":
     except subprocess.CalledProcessError:
         print("❌ Git não está instalado ou configurado corretamente.")
         exit(1)
+        
