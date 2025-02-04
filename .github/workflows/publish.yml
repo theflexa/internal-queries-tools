@@ -1,36 +1,40 @@
-name: Build Executable
+name: Build and Version Executable
 
 on:
   push:
     tags:
-      - 'v*'  # Disparar quando uma tag de versão for criada
+      - 'v*'
 
 jobs:
-  build:
+  build-and-version:
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: windows-latest
 
     steps:
+      # Checkout do código
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Configurar Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
+      # Instalar dependências
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install pyinstaller
+          pip install setuptools setuptools-scm pyinstaller -r requirements.txt
 
+      # Gerar executável com PyInstaller
       - name: Generate Executable
         run: |
-          pyinstaller --onefile --name=SNC-Query-Tool-${{ github.ref_name }} main.py
+          pyinstaller --onefile --name=DeepSeek-Tool-${{ github.ref_name }} main.py
 
+      # Upload do artefato gerado
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: SNC-Query-Tool-${{ github.ref_name }}
+          name: DeepSeek-Tool-${{ github.ref_name }}
           path: dist/

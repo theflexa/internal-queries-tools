@@ -1,7 +1,18 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="supabase_query_tool",
-    version="0.1",
-    packages=find_packages(),
+    name="deepseek_query_tool",
+    use_scm_version=True,
+    setup_requires=["setuptools_scm"],
+    packages=find_packages(exclude=["tests*", "logs*"]),
+    include_package_data=True,
+    package_dir={"": "."},
+    install_requires=[
+        line.strip() for line in open("requirements.txt").readlines() if line.strip()
+    ],
+    entry_points={
+        "console_scripts": [
+            "deepseek=main:main",  # Ajuste conforme o ponto de entrada
+        ],
+    },
 )

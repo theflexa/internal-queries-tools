@@ -28,8 +28,8 @@ def main():
     check_git_status()
 
     # Incrementa versão antes do commit
-    print("\n🔄 Atualizando versão...")
-    update_version_main()
+    #print("\n🔄 Atualizando versão...")
+    #update_version_main()
 
     # Solicita branch e commit message
     branch_name = input("Informe a branch (pressione Enter para 'main'): ") or "main"
