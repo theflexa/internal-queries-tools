@@ -31,17 +31,16 @@ jobs:
           if (Test-Path build) { Remove-Item -Recurse -Force build }
           if (Test-Path dist) { Remove-Item -Recurse -Force dist }
 
-      - name: Generate Executable (No UPX)
+      - name: Generate Executable
         shell: pwsh
         run: |
-          # Gera o executável sem usar UPX (--noupx) para evitar problemas de compressão
-          pyinstaller --onefile --clean --noupx --name=DeepSeek-Tool-${{ github.ref_name }} main.py
-          # Se necessário incluir recursos, adicione a opção --add-data "assets/*;assets/"
+          # Executa o PyInstaller com o arquivo .spec configurado
+          pyinstaller main.spec
 
       - name: Unblock Executable
         shell: pwsh
         run: |
-          $exePath = Join-Path $env:GITHUB_WORKSPACE "dist\DeepSeek-Tool-${{ github.ref_name }}.exe"
+          $exePath = Join-Path $env:GITHUB_WORKSPACE "dist\main.exe"
           if (Test-Path $exePath) {
             Unblock-File -Path $exePath
             Write-Output "Executável desbloqueado: $exePath"

@@ -202,3 +202,9 @@
 2025-02-04 11:23:01,356 - INFO - Inicializando interface gráfica.
 2025-02-04 12:24:17,949 - INFO - Logging configurado com sucesso.
 2025-02-04 12:24:17,974 - INFO - Inicializando interface gráfica.
+2025-02-04 12:49:19,173 - INFO - Logging configurado com sucesso.
+2025-02-04 12:49:19,236 - INFO - Inicializando interface gráfica.
+2025-02-04 12:49:41,932 - INFO - Executando query: Remover Registro de Job com parâmetros: {'job_id': '2'}
+2025-02-04 12:49:41,932 - INFO - Modo simulação ativado
+2025-02-04 12:49:45,212 - INFO - Executando query: Buscar Jobs Recentes com parâmetros: {}
+2025-02-04 12:49:45,212 - INFO - Modo simulação ativado
