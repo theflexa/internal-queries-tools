@@ -2,6 +2,8 @@ name: Build Executable
 
 on:
   push:
+    branches:
+      - main  # Executar em commits no branch principal
     tags:
       - 'v*'  # Disparar quando uma tag de versão for criada
 
