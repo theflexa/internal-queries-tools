@@ -4,9 +4,6 @@ on:
   push:
     tags:
       - 'v*'  # Aciona quando há push em tags
-    branches:
-      - 'main'  # Ou qualquer outra branch que você usa para a versão oficial
-      - 'dev'  # Para desenvolvimento/branches de teste
   workflow_dispatch:  # Permite acionar o fluxo manualmente
 
 jobs:

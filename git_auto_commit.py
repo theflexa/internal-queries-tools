@@ -110,7 +110,8 @@ def main():
     # Incrementa a versão
     new_version = increment_version(latest_version)
     print(f"\n🔄 A nova versão será: {new_version}")
-    print(f"\nInformação: Quando uma Tag nova é criada. É acionado o CI/CD que gera um executável desta versão.")
+    print(f"\nInformação: Quando uma Tag nova é criada. É acionado o CI/CD que gera um executável desta versão."
+          f"\nEntretanto, também é possível gerar manualmente.")
 
     # Pergunta se o usuário deseja criar a tag
     create_tag_choice = input(f"\nDeseja criar a tag com a versão '{new_version}'? (s/n): ").strip().lower()
