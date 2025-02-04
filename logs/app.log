@@ -1,0 +1,180 @@
+2025-02-03 18:58:31,260 - INFO - Logging configurado com sucesso.
+2025-02-03 19:03:29,973 - INFO - Logging configurado com sucesso.
+2025-02-03 19:03:30,058 - INFO - Inicializando interface gráfica.
+2025-02-03 19:57:56,859 - INFO - Logging configurado com sucesso.
+2025-02-03 19:57:56,882 - INFO - Inicializando interface gráfica.
+2025-02-03 19:58:02,188 - INFO - Executando query: Buscar Usuários por País com parâmetros: {'country': ''}
+2025-02-03 19:58:02,188 - INFO - Queries desabilitadas. Retornando dados simulados.
+2025-02-03 19:58:02,189 - ERROR - Erro na interface: 'dict' object has no attribute 'data'
+2025-02-03 20:00:25,362 - INFO - Logging configurado com sucesso.
+2025-02-03 20:00:25,385 - INFO - Inicializando interface gráfica.
+2025-02-03 20:00:29,582 - INFO - Executando query: Buscar Usuários por País com parâmetros: {'country': ''}
+2025-02-03 20:00:29,583 - INFO - Queries desabilitadas. Retornando dados simulados.
+2025-02-03 20:00:29,583 - ERROR - Erro na interface: 'dict' object has no attribute 'data'
+2025-02-03 20:00:32,286 - INFO - Executando query: Buscar Usuários por País com parâmetros: {'country': 'Teste'}
+2025-02-03 20:00:32,286 - INFO - Queries desabilitadas. Retornando dados simulados.
+2025-02-03 20:00:32,286 - ERROR - Erro na interface: 'dict' object has no attribute 'data'
+2025-02-03 20:00:41,516 - INFO - Executando query: Filtrar Pedidos por Data com parâmetros: {'start_date': 'Teste', 'end_date': 'teste'}
+2025-02-03 20:00:41,516 - INFO - Queries desabilitadas. Retornando dados simulados.
+2025-02-03 20:00:41,516 - ERROR - Erro na interface: 'dict' object has no attribute 'data'
+2025-02-03 20:00:49,234 - INFO - Executando query: Buscar Usuários por País com parâmetros: {'country': '12'}
+2025-02-03 20:00:49,234 - INFO - Queries desabilitadas. Retornando dados simulados.
+2025-02-03 20:00:49,234 - ERROR - Erro na interface: 'dict' object has no attribute 'data'
+2025-02-03 20:01:34,806 - INFO - Logging configurado com sucesso.
+2025-02-03 20:01:34,826 - INFO - Inicializando interface gráfica.
+2025-02-03 20:01:37,264 - INFO - Executando query: Buscar Usuários por País com parâmetros: {'country': 'Teste'}
+2025-02-03 20:01:37,264 - INFO - Queries desabilitadas. Retornando dados simulados.
+2025-02-03 20:01:37,265 - ERROR - Erro na interface: 'dict' object has no attribute 'data'
+2025-02-03 20:02:52,261 - INFO - Logging configurado com sucesso.
+2025-02-03 20:02:52,281 - INFO - Inicializando interface gráfica.
+2025-02-03 20:02:56,145 - INFO - Executando query: Buscar Usuários por País com parâmetros: {'country': 'tesete'}
+2025-02-03 20:02:56,145 - INFO - Queries desabilitadas. Retornando dados simulados.
+2025-02-03 20:02:56,146 - ERROR - Erro na interface: 'dict' object has no attribute 'data'
+2025-02-03 20:03:07,718 - INFO - Logging configurado com sucesso.
+2025-02-03 20:03:07,739 - INFO - Inicializando interface gráfica.
+2025-02-03 20:03:10,249 - INFO - Executando query: Buscar Usuários por País com parâmetros: {'country': 'Teste'}
+2025-02-03 20:03:10,249 - INFO - Queries desabilitadas. Retornando dados simulados.
+2025-02-03 20:03:10,250 - ERROR - Erro na interface: 'dict' object has no attribute 'data'
+2025-02-03 20:08:20,238 - INFO - Logging configurado com sucesso.
+2025-02-03 20:08:20,265 - INFO - Inicializando interface gráfica.
+2025-02-03 20:08:26,395 - INFO - Executando query: Buscar Usuários por País com parâmetros: {'country': 'teste'}
+2025-02-03 20:08:26,395 - INFO - Queries desabilitadas. Retornando dados simulados.
+2025-02-03 20:08:40,963 - INFO - Executando query: Filtrar Pedidos por Data com parâmetros: {'start_date': '1', 'end_date': '2'}
+2025-02-03 20:08:40,963 - INFO - Queries desabilitadas. Retornando dados simulados.
+2025-02-03 20:10:26,602 - INFO - Logging configurado com sucesso.
+2025-02-03 20:10:26,622 - INFO - Inicializando interface gráfica.
+2025-02-03 20:10:29,144 - INFO - Executando query: Buscar Usuários por País com parâmetros: {'country': 'teste'}
+2025-02-03 20:10:29,144 - INFO - Queries desabilitadas. Retornando dados simulados.
+2025-02-03 20:10:29,144 - INFO - {'data': [{'id': 1, 'name': 'João', 'country': 'teste'}]}
+2025-02-03 20:24:11,632 - INFO - Logging configurado com sucesso.
+2025-02-03 20:24:11,649 - INFO - Inicializando interface gráfica.
+2025-02-03 20:26:42,966 - INFO - Logging configurado com sucesso.
+2025-02-03 20:26:42,983 - INFO - Inicializando interface gráfica.
+2025-02-03 20:27:20,642 - INFO - Logging configurado com sucesso.
+2025-02-03 20:27:20,664 - INFO - Inicializando interface gráfica.
+2025-02-03 20:30:06,551 - INFO - Logging configurado com sucesso.
+2025-02-03 20:30:06,571 - INFO - Inicializando interface gráfica.
+2025-02-03 20:32:56,316 - INFO - Logging configurado com sucesso.
+2025-02-03 20:32:56,338 - INFO - Inicializando interface gráfica.
+2025-02-03 20:33:39,426 - INFO - Executando query: Buscar Usuários por País com parâmetros: {'country': 'brazil'}
+2025-02-03 20:33:39,426 - INFO - Queries desabilitadas. Retornando dados simulados.
+2025-02-03 20:33:39,426 - INFO - {'data': [{'id': 1, 'name': 'João', 'country': 'brazil'}]}
+2025-02-03 20:38:45,618 - INFO - Logging configurado com sucesso.
+2025-02-03 20:38:45,639 - INFO - Inicializando interface gráfica.
+2025-02-03 20:38:57,989 - INFO - Logging configurado com sucesso.
+2025-02-03 20:38:58,011 - INFO - Inicializando interface gráfica.
+2025-02-03 20:39:27,432 - INFO - Logging configurado com sucesso.
+2025-02-03 20:39:27,453 - INFO - Inicializando interface gráfica.
+2025-02-03 20:40:45,218 - INFO - Logging configurado com sucesso.
+2025-02-03 20:40:45,236 - INFO - Inicializando interface gráfica.
+2025-02-03 20:43:48,682 - INFO - Logging configurado com sucesso.
+2025-02-03 20:43:48,703 - INFO - Inicializando interface gráfica.
+2025-02-03 20:46:21,352 - INFO - Logging configurado com sucesso.
+2025-02-03 20:46:21,376 - INFO - Inicializando interface gráfica.
+2025-02-03 20:51:19,801 - INFO - Logging configurado com sucesso.
+2025-02-03 20:51:19,820 - INFO - Inicializando interface gráfica.
+2025-02-03 20:51:24,252 - INFO - Executando query: Consultar Jobs Mais Recentes com parâmetros: {}
+2025-02-03 20:51:24,252 - INFO - Queries desabilitadas. Retornando dados simulados.
+2025-02-03 20:51:24,252 - ERROR - Erro ao executar query: Query não implementada
+2025-02-03 20:51:24,252 - ERROR - Erro na interface: Query não implementada
+2025-02-03 20:58:21,963 - INFO - Logging configurado com sucesso.
+2025-02-03 20:58:21,990 - INFO - Inicializando interface gráfica.
+2025-02-03 20:59:28,781 - INFO - Logging configurado com sucesso.
+2025-02-03 20:59:28,801 - INFO - Inicializando interface gráfica.
+2025-02-03 21:01:35,962 - INFO - Logging configurado com sucesso.
+2025-02-03 21:01:35,980 - INFO - Inicializando interface gráfica.
+2025-02-03 21:03:15,773 - INFO - Logging configurado com sucesso.
+2025-02-03 21:03:15,791 - INFO - Inicializando interface gráfica.
+2025-02-03 21:03:28,460 - INFO - Logging configurado com sucesso.
+2025-02-03 21:03:28,479 - INFO - Inicializando interface gráfica.
+2025-02-03 21:04:31,165 - INFO - Logging configurado com sucesso.
+2025-02-03 21:04:31,186 - INFO - Inicializando interface gráfica.
+2025-02-03 21:04:39,113 - INFO - Logging configurado com sucesso.
+2025-02-03 21:04:39,131 - INFO - Inicializando interface gráfica.
+2025-02-03 21:05:32,953 - INFO - Logging configurado com sucesso.
+2025-02-03 21:05:32,974 - INFO - Inicializando interface gráfica.
+2025-02-03 21:07:58,806 - INFO - Logging configurado com sucesso.
+2025-02-03 21:07:58,825 - INFO - Inicializando interface gráfica.
+2025-02-03 21:08:17,937 - INFO - Executando query: Remover Registro de Job com parâmetros: {'job_id': '2'}
+2025-02-03 21:08:17,937 - INFO - Queries desabilitadas. Retornando dados simulados.
+2025-02-03 21:08:17,937 - ERROR - Erro ao executar query: Query não implementada
+2025-02-03 21:08:17,937 - ERROR - Erro na interface: Query não implementada
+2025-02-03 21:08:24,799 - INFO - Executando query: Buscar Jobs Recentes com parâmetros: {}
+2025-02-03 21:08:24,799 - INFO - Queries desabilitadas. Retornando dados simulados.
+2025-02-03 21:08:24,799 - ERROR - Erro ao executar query: Query não implementada
+2025-02-03 21:08:24,799 - ERROR - Erro na interface: Query não implementada
+2025-02-03 21:08:30,973 - INFO - Logging configurado com sucesso.
+2025-02-03 21:08:30,994 - INFO - Inicializando interface gráfica.
+2025-02-03 21:09:45,185 - INFO - Logging configurado com sucesso.
+2025-02-03 21:09:45,206 - INFO - Inicializando interface gráfica.
+2025-02-03 21:10:43,382 - INFO - Logging configurado com sucesso.
+2025-02-03 21:10:43,404 - INFO - Inicializando interface gráfica.
+2025-02-03 21:19:14,979 - INFO - Logging configurado com sucesso.
+2025-02-03 21:19:14,999 - INFO - Inicializando interface gráfica.
+2025-02-03 21:20:20,605 - INFO - Logging configurado com sucesso.
+2025-02-03 21:20:20,628 - INFO - Inicializando interface gráfica.
+2025-02-03 21:27:14,713 - INFO - Logging configurado com sucesso.
+2025-02-03 21:27:14,736 - INFO - Inicializando interface gráfica.
+2025-02-03 21:34:26,494 - INFO - Logging configurado com sucesso.
+2025-02-03 21:34:26,514 - INFO - Inicializando interface gráfica.
+2025-02-03 21:45:16,958 - INFO - Logging configurado com sucesso.
+2025-02-03 21:50:01,184 - INFO - Logging configurado com sucesso.
+2025-02-03 21:50:01,204 - INFO - Inicializando interface gráfica.
+2025-02-03 21:58:00,758 - INFO - Logging configurado com sucesso.
+2025-02-03 21:58:00,778 - INFO - Inicializando interface gráfica.
+2025-02-03 21:58:05,563 - INFO - Executando query: Remover Registro de Job com parâmetros: {'job_id': '1'}
+2025-02-03 21:58:05,563 - INFO - Modo simulação ativado
+2025-02-03 21:58:10,225 - INFO - Executando query: Buscar Jobs Recentes com parâmetros: {}
+2025-02-03 21:58:10,225 - INFO - Modo simulação ativado
+2025-02-03 22:01:02,335 - INFO - Logging configurado com sucesso.
+2025-02-03 22:01:02,353 - INFO - Inicializando interface gráfica.
+2025-02-03 22:02:10,644 - INFO - Executando query: Remover Registro de Job com parâmetros: {'job_id': '12'}
+2025-02-03 22:02:10,644 - INFO - Modo simulação ativado
+2025-02-03 22:02:16,372 - INFO - Executando query: Buscar Jobs Recentes com parâmetros: {}
+2025-02-03 22:02:16,372 - INFO - Modo simulação ativado
+2025-02-03 23:18:45,002 - INFO - Logging configurado com sucesso.
+2025-02-03 23:18:45,028 - INFO - Inicializando interface gráfica.
+2025-02-03 23:23:39,544 - INFO - Logging configurado com sucesso.
+2025-02-03 23:23:39,564 - INFO - Inicializando interface gráfica.
+2025-02-03 23:24:55,875 - INFO - Logging configurado com sucesso.
+2025-02-03 23:24:55,893 - INFO - Inicializando interface gráfica.
+2025-02-03 23:25:37,586 - INFO - Logging configurado com sucesso.
+2025-02-03 23:25:37,606 - INFO - Inicializando interface gráfica.
+2025-02-03 23:25:57,748 - INFO - Logging configurado com sucesso.
+2025-02-03 23:25:57,766 - INFO - Inicializando interface gráfica.
+2025-02-03 23:26:12,223 - INFO - Logging configurado com sucesso.
+2025-02-03 23:26:12,248 - INFO - Inicializando interface gráfica.
+2025-02-03 23:26:18,482 - INFO - Logging configurado com sucesso.
+2025-02-03 23:26:18,504 - INFO - Inicializando interface gráfica.
+2025-02-03 23:26:23,161 - INFO - Logging configurado com sucesso.
+2025-02-03 23:26:23,183 - INFO - Inicializando interface gráfica.
+2025-02-03 23:27:00,318 - INFO - Logging configurado com sucesso.
+2025-02-03 23:27:00,340 - INFO - Inicializando interface gráfica.
+2025-02-03 23:27:08,553 - INFO - Logging configurado com sucesso.
+2025-02-03 23:27:08,570 - INFO - Inicializando interface gráfica.
+2025-02-03 23:27:19,054 - INFO - Logging configurado com sucesso.
+2025-02-03 23:27:19,076 - INFO - Inicializando interface gráfica.
+2025-02-03 23:27:35,363 - INFO - Logging configurado com sucesso.
+2025-02-03 23:27:35,383 - INFO - Inicializando interface gráfica.
+2025-02-03 23:27:42,784 - INFO - Logging configurado com sucesso.
+2025-02-03 23:27:42,804 - INFO - Inicializando interface gráfica.
+2025-02-03 23:28:11,761 - INFO - Logging configurado com sucesso.
+2025-02-03 23:28:11,783 - INFO - Inicializando interface gráfica.
+2025-02-03 23:28:35,425 - INFO - Logging configurado com sucesso.
+2025-02-03 23:28:35,449 - INFO - Inicializando interface gráfica.
+2025-02-03 23:29:34,077 - INFO - Logging configurado com sucesso.
+2025-02-03 23:29:34,095 - INFO - Inicializando interface gráfica.
+2025-02-03 23:30:15,668 - INFO - Logging configurado com sucesso.
+2025-02-03 23:30:15,687 - INFO - Inicializando interface gráfica.
+2025-02-03 23:37:53,909 - INFO - Logging configurado com sucesso.
+2025-02-03 23:37:53,964 - INFO - Inicializando interface gráfica.
+2025-02-03 23:38:08,456 - INFO - Logging configurado com sucesso.
+2025-02-03 23:38:08,479 - INFO - Inicializando interface gráfica.
+2025-02-03 23:38:14,996 - INFO - Logging configurado com sucesso.
+2025-02-03 23:38:15,015 - INFO - Inicializando interface gráfica.
+2025-02-03 23:40:15,705 - INFO - Logging configurado com sucesso.
+2025-02-03 23:40:15,724 - INFO - Inicializando interface gráfica.
+2025-02-03 23:42:25,852 - INFO - Logging configurado com sucesso.
+2025-02-03 23:42:25,872 - INFO - Inicializando interface gráfica.
+2025-02-03 23:42:42,253 - INFO - Logging configurado com sucesso.
+2025-02-03 23:42:42,272 - INFO - Inicializando interface gráfica.
