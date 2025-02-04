@@ -15,3 +15,4 @@ def get_app_info_html():
     <b>Repositório:</b> <a href="{REPOSITORY_URL}">GitHub</a><br>
     <b>Licença:</b> {LICENSE_TYPE}
     """
+
