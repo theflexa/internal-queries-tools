@@ -40,19 +40,16 @@ def get_latest_tag() -> str:
 
 def increment_version(version: str) -> str:
     """Incrementa a versão seguindo o padrão 'vX.Y.Z'."""
-    # Remove o prefixo "v" e divide em partes
     version_parts = version.lstrip("v").split(".")
 
-    # Se a versão não estiver no formato esperado, retorna uma versão padrão
     if len(version_parts) != 3:
         return "v0.0.1"
 
     major, minor, patch = map(int, version_parts)
 
-    # Incrementa o número de patch (pode ser ajustado para major ou minor conforme necessário)
+    # Incrementa o número de patch
     patch += 1
 
-    # Retorna a nova versão formatada
     return f"v{major}.{minor}.{patch}"
 
 
@@ -89,6 +86,34 @@ def generate_release_info(version: str):
     print("\n✅ Arquivo '.release_info.json' atualizado!")
 
 
+def ensure_branch_exists(branch_name: str) -> bool:
+    """Verifica se a branch existe remotamente e localmente."""
+    # Atualiza as referências remotas
+    if not run_command("git fetch"):
+        print("❌ Não foi possível atualizar as referências remotas.")
+        return False
+
+    # Verifica se a branch existe remotamente
+    result = subprocess.run(f"git branch -r", shell=True, capture_output=True, text=True)
+    if f"origin/{branch_name}" not in result.stdout:
+        print(f"⚠️ A branch '{branch_name}' não existe remotamente. Não será possível fazer o push.")
+        return False
+
+    # Verifica se a branch existe localmente
+    result = subprocess.run(f"git branch", shell=True, capture_output=True, text=True)
+    if f"{branch_name}" not in result.stdout:
+        print(f"⚠️ A branch '{branch_name}' não existe localmente. Você deseja mudar para ela? (s/n): ", end="")
+        if input().strip().lower() == "s":
+            if not run_command(f"git checkout -b {branch_name} origin/{branch_name}"):
+                print(f"❌ Falha ao criar e mudar para a branch '{branch_name}'.")
+                return False
+        else:
+            print("❌ Você precisa estar na branch correta para fazer o push.")
+            return False
+
+    return True
+
+
 def main():
     check_git_status()
 
@@ -120,6 +145,11 @@ def main():
         print("⚠️ Nenhuma alteração para commitar.")
         exit(1)
 
+    if not ensure_branch_exists(branch_name):
+        exit(1)
+
+    # Empurrando as alterações para a branch remota
+    print(f"\n🔄 Enviando alterações para a branch remota '{branch_name}'...")
     if not run_command(f"git push origin {branch_name}"):
         print(f"❌ Falha ao fazer push para a branch '{branch_name}'. Verifique se ela existe.")
         exit(1)
