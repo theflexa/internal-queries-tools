@@ -49,17 +49,29 @@ def create_tag(version: str):
     print(f"\n✅ Tag '{version}' criada e enviada com sucesso!")
 
 
+def create_release(version: str):
+    """Cria uma release no GitHub associada à tag."""
+    print(f"\n📦 Criando a release para a tag '{version}'...")
+    # Você pode usar a API do GitHub para criar a release automaticamente.
+    # Exemplo simples de como poderia ser feito via `curl` (ou você pode usar o GitHub CLI)
+    release_message = input("Mensagem da release: ")
+    command = f"gh release create {version} --title '{version}' --notes '{release_message}'"
+    if not run_command(command):
+        print("❌ Falha ao criar a release no GitHub.")
+        exit(1)
+    print(f"\n✅ Release '{version}' criada com sucesso no GitHub!")
+
+
 def main():
     check_git_status()
 
     # Incrementa versão antes do commit
-    # print("\n🔄 Atualizando versão...")
-    # update_version_main()
+    #print("\n🔄 Atualizando versão...")
+    #update_version_main()
 
     # Solicita branch e commit message
     branch_name = input("Informe a branch (pressione Enter para 'main'): ") or "main"
-    commit_message = input(
-        "Descrição do commit (ou pressione Enter para 'Atualiza versão'): ").strip() or "Atualiza versão automaticamente"
+    commit_message = input("Descrição do commit (ou pressione Enter para 'Atualiza versão'): ").strip() or "Atualiza versão automaticamente"
 
     print("\n🚀 Automatizando Git...\n")
 
@@ -80,8 +92,17 @@ def main():
     # Obtém a versão do commit
     version = get_version_from_git()
 
-    # Cria uma tag com a versão do commit
-    create_tag(version)
+    # Pergunta se o usuário deseja criar a tag ou release
+    action_choice = input(f"\nDeseja criar a tag ou release com a versão '{version}'? (tag/release): ").strip().lower()
+    if action_choice == "tag":
+        # Cria uma tag com a versão do commit
+        create_tag(version)
+    elif action_choice == "release":
+        # Cria uma tag e uma release associada
+        create_tag(version)
+        create_release(version)
+    else:
+        print("\n⚠️ Nenhuma tag ou release criada.")
 
 
 if __name__ == "__main__":
