@@ -1,4 +1,4 @@
-name: Build and Version Executable
+name: Publish Package
 
 on:
   push:

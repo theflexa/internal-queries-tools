@@ -24,6 +24,25 @@ def check_git_status() -> None:
         exit(1)
 
 
+def create_tag():
+    """Cria uma nova tag no Git."""
+    tag_name = input("Deseja criar uma nova tag? (S para sim, qualquer outra tecla para não): ").strip().lower()
+    if tag_name == "s":
+        tag_version = input("Informe o nome da nova tag (ex: v1.0.1): ").strip()
+        if tag_version:
+            print(f"\n📑 Criando a tag '{tag_version}'...")
+            if not run_command(f"git tag {tag_version}"):
+                print("❌ Falha ao criar a tag.")
+                exit(1)
+            if not run_command(f"git push origin {tag_version}"):
+                print(f"❌ Falha ao fazer push da tag '{tag_version}'.")
+                exit(1)
+            print(f"\n✅ Tag '{tag_version}' criada e enviada com sucesso!")
+        else:
+            print("⚠️ Nome da tag inválido.")
+            exit(1)
+
+
 def main():
     check_git_status()
 
@@ -50,6 +69,9 @@ def main():
         exit(1)
 
     print("\n✅ Commit enviado com sucesso!")
+
+    # Pergunta ao usuário se deseja criar uma tag
+    create_tag()
 
 
 if __name__ == "__main__":
