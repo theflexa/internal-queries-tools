@@ -26,3 +26,4 @@ jobs:
           git config --local user.name "Flexa"
           git tag $NEW_TAG
           git push origin $NEW_TAG
+          
