@@ -31,11 +31,12 @@ jobs:
           if (Test-Path build) { Remove-Item -Recurse -Force build }
           if (Test-Path dist) { Remove-Item -Recurse -Force dist }
 
-      - name: Generate Executable (Debug Mode)
+      - name: Generate Executable (No UPX)
         shell: pwsh
         run: |
-          # Gera o executável com opções de debug e limpeza de build anteriores.
-          pyinstaller --onefile --debug=all --clean --name=DeepSeek-Tool-${{ github.ref_name }} main.py
+          # Gera o executável sem usar UPX (--noupx) para evitar problemas de compressão
+          pyinstaller --onefile --clean --noupx --name=DeepSeek-Tool-${{ github.ref_name }} main.py
+          # Se necessário incluir recursos, adicione a opção --add-data "assets/*;assets/"
 
       - name: Unblock Executable
         shell: pwsh
@@ -44,8 +45,7 @@ jobs:
           if (Test-Path $exePath) {
             Unblock-File -Path $exePath
             Write-Output "Executável desbloqueado: $exePath"
-          }
-          else {
+          } else {
             Write-Error "Executável não encontrado: $exePath"
           }
 
