@@ -156,7 +156,6 @@ STYLE_SHEET = """
         border: none;
         padding: 5px;
         border-radius: 15px;
-        transition: background-color 0.3s, border-radius 0.3s;
     }
     
     QToolButton:hover {
