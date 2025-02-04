@@ -9,6 +9,7 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QToolButton
 from PyQt6.QtGui import QIcon
 from frontend.styles import STYLE_SHEET
+from app_info import AppInfo
 
 logger = logging.getLogger(__name__)
 
@@ -20,6 +21,7 @@ class QueryWindow(QMainWindow):
             "Remover Registro de Job": ["job_id"],
             "Buscar Jobs Recentes": []
         }
+        self.app_info = AppInfo()
         self.initUI()
 
     def initUI(self):
@@ -250,19 +252,12 @@ class QueryWindow(QMainWindow):
         """
         Exibe uma caixa de diálogo com informações da aplicação.
         """
-        app_info = """
-            <b>Versão:</b> 1.0.0<br>
-            <b>Desenvolvido por:</b> Sua Empresa<br>
-            <b>Data da Versão:</b> 03/02/2024<br>
-            <b>Contato:</b> suporte@suaempresa.com<br>
-            <b>Repositório:</b> <a href="https://github.com/suaempresa/seuprojeto">GitHub</a><br>
-            <b>Licença:</b> MIT
-        """
+        app_info_html = self.app_info.get_info_html()  # Obtém o HTML formatado
 
         msg_box = QMessageBox(self)
         msg_box.setWindowTitle("Informações da Aplicação")
         msg_box.setIcon(QMessageBox.Icon.Information)
         msg_box.setTextFormat(Qt.TextFormat.RichText)  # Permite HTML
-        msg_box.setText(app_info)
+        msg_box.setText(app_info_html)
         msg_box.setStandardButtons(QMessageBox.StandardButton.Ok)
         msg_box.exec()
