@@ -1,5 +1,6 @@
 import os
 import subprocess
+from utils.update_version import main as update_version_main
 
 
 def run_command(command: str) -> bool:
@@ -13,12 +14,10 @@ def run_command(command: str) -> bool:
 
 def check_git_status() -> None:
     """Verifica se o repositório Git está configurado corretamente."""
-    # Verifica se a pasta tem um repositório Git
     if not os.path.exists(".git"):
         print("⚠️ Este diretório não parece ser um repositório Git. Inicialize com `git init`.")
         exit(1)
 
-    # Verifica o estado atual do repositório
     result = subprocess.run("git status --porcelain", shell=True, capture_output=True, text=True)
     if not result.stdout.strip():
         print("⚠️ Nenhuma alteração para commitar. Certifique-se de editar os arquivos antes.")
@@ -28,18 +27,16 @@ def check_git_status() -> None:
 def main():
     check_git_status()
 
-    # Solicitar o nome da branch (padrão: 'main')
-    branch_name = input("Informe a branch (pressione Enter para 'main'): ") or "main"
+    # Incrementa versão antes do commit
+    print("\n🔄 Atualizando versão...")
+    update_version_main()
 
-    # Solicitar a descrição do commit
-    commit_message = input("Descrição do commit: ").strip()
-    if not commit_message:
-        print("❌ A mensagem do commit não pode estar vazia.")
-        exit(1)
+    # Solicita branch e commit message
+    branch_name = input("Informe a branch (pressione Enter para 'main'): ") or "main"
+    commit_message = input("Descrição do commit (ou pressione Enter para 'Atualiza versão'): ").strip() or "Atualiza versão automaticamente"
 
     print("\n🚀 Automatizando Git...\n")
 
-    # Executar comandos com validações
     if not run_command("git add ."):
         print("❌ Falha ao adicionar arquivos.")
         exit(1)
@@ -57,7 +54,6 @@ def main():
 
 if __name__ == "__main__":
     try:
-        # Verifica se Git está configurado corretamente
         subprocess.run("git --version", shell=True, check=True)
         main()
     except subprocess.CalledProcessError:
