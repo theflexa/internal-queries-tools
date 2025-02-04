@@ -1,59 +1,37 @@
-import requests
-from datetime import datetime, timedelta
-from importlib.metadata import version
 import os
 import json
 
+
 class AppInfo:
     def __init__(self):
-        self.version = self.get_version()
         self.developer = "Flexa"
         self.contact = "the.flexa@outlook.com"
-        self.repository = "https://api.github.com/repos/theflexa/internal-queries-tools/releases/latest"
+        # Caminho para o arquivo oculto contendo informações da versão
+        self.cache_file = ".release_info.json"
         self.license = "MIT"
-        self.release_date_file = "release_date.json"
-        self.release_date = self.get_release_date()
+        # Obtém as informações de versão e data diretamente do arquivo oculto
+        info = self.get_release_info()
+        self.version = info.get("tag_name", "Versão não encontrada")
+        self.release_date = info.get("published_at", "Não encontrado")
 
-    def get_version(self):
+    def get_release_info(self) -> dict:
         """
-        Obtém a versão do pacote usando importlib.metadata, sincronizada com as tags do Git.
+        Retorna as informações de versão e data armazenadas localmente no arquivo .release_info.json.
+        Caso o arquivo não exista ou esteja corrompido, retorna valores padrão.
         """
-        try:
-            return version("deepseek_query_tool")  # Nome do seu pacote
-        except Exception as e:
-            print(f"Erro ao obter a versão: {e}")
-            return "Versão não encontrada"
+        if os.path.exists(self.cache_file):
+            try:
+                with open(self.cache_file, "r") as f:
+                    data = json.load(f)
+                return data
+            except Exception as e:
+                print(f"Erro ao ler o cache: {e}")
 
-    def get_release_date(self):
-        """
-        Verifica se a data da última release precisa ser atualizada.
-        Se não, usa a data armazenada localmente.
-        """
-        if os.path.exists(self.release_date_file):
-            with open(self.release_date_file, "r") as f:
-                data = json.load(f)
-                last_update = datetime.fromisoformat(data.get("last_update", datetime.now().isoformat()))
-                # Se a data for mais de 7 dias atrás, atualiza a data
-                if datetime.now() - last_update < timedelta(days=7):
-                    return data.get("release_date")
+        # Se o arquivo não existir ou estiver corrompido, retorna valores padrão
+        print("⚠️ Arquivo de cache não encontrado ou corrompido. Informações padrão serão usadas.")
+        return {"tag_name": "Versão não encontrada", "published_at": "Não encontrado"}
 
-        # Se não houver arquivo ou se a data precisar ser atualizada
-        try:
-            response = requests.get(self.repository)
-            response.raise_for_status()  # Vai gerar um erro se a requisição falhar
-            release_info = response.json()
-            release_date = release_info["published_at"][:10]  # Data no formato YYYY-MM-DD
-
-            # Armazena a data localmente e atualiza a data de último acesso
-            with open(self.release_date_file, "w") as f:
-                json.dump({"release_date": release_date, "last_update": datetime.now().isoformat()}, f)
-
-            return release_date
-        except requests.RequestException as e:
-            print(f"Erro ao acessar a API do GitHub: {e}")
-            return datetime.now().strftime("%d/%m/%Y")
-
-    def get_info_html(self):
+    def get_info_html(self) -> str:
         """
         Retorna as informações da aplicação formatadas em HTML.
         """
@@ -62,6 +40,12 @@ class AppInfo:
             <b>Desenvolvido por:</b> {self.developer}<br>
             <b>Data da Versão:</b> {self.release_date}<br>
             <b>Contato:</b> {self.contact}<br>
-            <b>Repositório:</b> <a href="{self.repository}">GitHub</a><br>
+            <b>Repositório:</b> <a href="https://github.com/theflexa/internal-queries-tools">GitHub</a><br>
             <b>Licença:</b> {self.license}
         """
+
+
+# Exemplo de uso:
+if __name__ == "__main__":
+    app_info = AppInfo()
+    print(app_info.get_info_html())

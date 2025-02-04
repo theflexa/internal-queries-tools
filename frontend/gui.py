@@ -9,7 +9,7 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QToolButton
 from PyQt6.QtGui import QIcon
 from frontend.styles import STYLE_SHEET
-from app_info import AppInfo
+from utils.app_info import AppInfo
 
 logger = logging.getLogger(__name__)
 
