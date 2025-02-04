@@ -3,7 +3,7 @@ name: Build Executable
 on:
   push:
     tags:
-      - 'v*'  # Disparar quando uma tag de versão for criada
+      - 'v*'  # Disparar quando uma tag de versão for criada (pelo versioning.yml)
 
 jobs:
   build:
