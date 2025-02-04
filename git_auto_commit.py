@@ -3,6 +3,7 @@ import subprocess
 import json
 from datetime import datetime
 
+
 def run_command(command: str) -> bool:
     """Executa comandos no terminal, capturando erros."""
     process = subprocess.run(command, shell=True)
@@ -41,13 +42,16 @@ def increment_version(version: str) -> str:
     """Incrementa a versão seguindo o padrão 'vX.Y.Z'."""
     # Remove o prefixo "v" e divide em partes
     version_parts = version.lstrip("v").split(".")
+
     # Se a versão não estiver no formato esperado, retorna uma versão padrão
     if len(version_parts) != 3:
         return "v0.0.1"
 
     major, minor, patch = map(int, version_parts)
+
     # Incrementa o número de patch (pode ser ajustado para major ou minor conforme necessário)
     patch += 1
+
     # Retorna a nova versão formatada
     return f"v{major}.{minor}.{patch}"
 
@@ -73,39 +77,38 @@ def create_tag(version: str):
     print(f"\n✅ Tag '{version}' criada e enviada com sucesso!")
 
 
-def cache_release_info(tag_version: str):
-    """
-    Gera um arquivo oculto (.release_info.json) contendo:
-      - tag_name: a versão gerada (não necessariamente a tag);
-      - published_at: data do último commit (obtida via git log);
-      - version: a versão, que neste caso é a mesma da tag.
-    """
-    try:
-        result = subprocess.run("git log -1 --format=%cd --date=iso", shell=True, capture_output=True, text=True)
-        if result.returncode == 0:
-            published_at = result.stdout.strip()
-        else:
-            published_at = "Unknown"
-    except Exception as e:
-        print(f"Erro ao obter a data do commit: {e}")
-        published_at = "Unknown"
-
-    info = {
-        "tag_name": tag_version,
-        "published_at": published_at,
-        "version": tag_version
+def generate_release_info(version: str):
+    """Gera e salva o arquivo .release_info.json com informações de versão e data."""
+    release_info = {
+        "tag_name": version,
+        "published_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
     }
-
+    # Cria ou sobrescreve o arquivo .release_info.json
     with open(".release_info.json", "w") as f:
-        json.dump(info, f)
-    print("\n✅ Informações de release cacheadas em .release_info.json")
+        json.dump(release_info, f, indent=4)
+    print("\n✅ Arquivo '.release_info.json' atualizado!")
 
 
 def main():
     check_git_status()
 
+    # Obtém a última versão (tag)
+    latest_version = get_latest_tag()
+
+    # Incrementa a versão
+    new_version = increment_version(latest_version)
+    print(f"\n🔄 A nova versão será: {new_version}")
+
+    # Gera e atualiza o arquivo .release_info.json
+    generate_release_info(new_version)
+
+    print(f"\nInformação: Quando uma Tag nova é criada, um CI/CD é acionado para gerar o executável desta versão.")
+    print(f"Entretanto, também é possível gerar manualmente.")
+
+    # Solicita branch e commit message
     branch_name = input("Informe a branch (pressione Enter para 'main'): ") or "main"
-    commit_message = input("Descrição do commit (ou pressione Enter para 'Atualiza versão'): ").strip() or "Atualiza versão automaticamente"
+    commit_message = input(
+        "Descrição do commit (ou pressione Enter para 'Atualiza versão'): ").strip() or "Atualiza versão automaticamente"
 
     print("\n🚀 Automatizando Git...\n")
 
@@ -123,26 +126,14 @@ def main():
 
     print("\n✅ Commit enviado com sucesso!")
 
-    # Obtém a última versão (tag)
-    latest_version = get_latest_tag()
-    # Incrementa a versão
-    new_version = increment_version(latest_version)
-    print(f"\n🔄 A nova versão será: {new_version}")
-    print("\nInformação: Quando uma tag nova é criada, é acionado o CI/CD que gera um executável desta versão."
-          "\nEntretanto, também é possível gerar manualmente.")
-
     # Pergunta se o usuário deseja criar a tag
     create_tag_choice = input(f"\nDeseja criar a tag com a versão '{new_version}'? (s/n): ").strip().lower()
 
     if create_tag_choice == "s":
         # Cria uma tag com a versão incrementada
         create_tag(new_version)
-        # Gera o arquivo oculto com informações da release
-        cache_release_info(new_version)
     else:
-        print("\n⚠️ Nenhuma tag criada. O arquivo de release será atualizado com a versão incrementada.")
-        # Gera o arquivo oculto com informações da versão
-        cache_release_info(new_version)
+        print("\n⚠️ Nenhuma tag criada.")
 
 
 if __name__ == "__main__":
