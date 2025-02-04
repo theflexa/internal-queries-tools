@@ -32,3 +32,4 @@ jobs:
           git push https://${{ secrets.GITHUB_TOKEN }}@github.com/theflexa/internal-queries-tools.git $NEW_TAG
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
