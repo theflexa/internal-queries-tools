@@ -34,12 +34,11 @@ jobs:
       - name: Generate Executable (No UPX)
         shell: pwsh
         run: |
-          # Gera o executável com configurações adicionais de segurança
+          # Gera o executável com configurações de segurança
           pyinstaller --onefile `
                      --clean `
                      --add-data "assets/*;assets/" `
                      --noupx `
-                     --win-private-assemblies `
                      --uac-admin `
                      --name=DeepSeek-Tool-${{ github.ref_name }} `
                      --noconfirm `
