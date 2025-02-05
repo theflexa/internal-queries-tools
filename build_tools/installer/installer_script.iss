@@ -1,8 +1,8 @@
 #define MyAppName "DeepSeek Tool"
-#define MyAppVersion "0.0.12"
+#define MyAppVersion "0.0.13"
 #define MyAppPublisher "Flexa"
 #define MyAppURL "https://github.com/theflexa/internal-queries-tools"
-#define MyAppExeName "DeepSeek-Tool-v0.0.12.exe"
+#define MyAppExeName "DeepSeek-Tool-v0.0.13.exe"
 
 [Setup]
 ; Configurações básicas
@@ -37,7 +37,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 ; Arquivo principal
-Source: "..\..\dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\dist\DeepSeek-Tool-v0.0.13.exe"; DestDir: "{app}"; Flags: ignoreversion
 ; Arquivos adicionais
 Source: "..\..\assets\*"; DestDir: "{app}\assets"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\..\\.env"; DestDir: "{app}"; Flags: ignoreversion

@@ -12,14 +12,33 @@ sys.path.append(str(project_root))
 def check_inno_setup():
     """Verifica se o Inno Setup está instalado"""
     inno_paths = [
+        # Caminhos padrão de instalação
         r"C:\Program Files (x86)\Inno Setup 6\ISCC.exe",
-        r"C:\Program Files\Inno Setup 6\ISCC.exe"
+        r"C:\Program Files\Inno Setup 6\ISCC.exe",
+        # Versões mais recentes
+        r"C:\Program Files (x86)\Inno Setup 7\ISCC.exe",
+        r"C:\Program Files\Inno Setup 7\ISCC.exe",
+        # Caminhos alternativos comuns
+        os.path.expandvars(r"%LOCALAPPDATA%\Programs\Inno Setup 6\ISCC.exe"),
+        os.path.expandvars(r"%PROGRAMFILES%\Inno Setup 6\ISCC.exe"),
+        os.path.expandvars(r"%PROGRAMFILES(X86)%\Inno Setup 6\ISCC.exe")
     ]
     
     for path in inno_paths:
         if os.path.exists(path):
-            return path
+            # Verifica se temos permissão de execução
+            try:
+                if os.access(path, os.X_OK):
+                    return path
+                else:
+                    print(f"⚠️ Encontrado Inno Setup em {path}, mas sem permissão de execução")
+            except Exception as e:
+                print(f"⚠️ Erro ao verificar permissões de {path}: {e}")
+                continue
     
+    print("❌ Inno Setup não encontrado nos caminhos padrão")
+    print("Por favor, instale o Inno Setup 6 ou 7:")
+    print("https://jrsoftware.org/isdl.php")
     return None
 
 def create_license():
